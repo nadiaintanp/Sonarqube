@@ -8,9 +8,9 @@ services:
       - path: .env
         required: true
     volumes:
-      - ./sonarqube/conf:/opt/sonarqube/conf
-      - ./sonarqube/data:/opt/sonarqube/data
-      - ./sonarqube/extensions:/opt/sonarqube/extensions
+      - ./conf:/opt/sonarqube/conf:rw
+      - ./data:/opt/sonarqube/data:rw
+      - ./extensions:/opt/sonarqube/extensions:rw
     restart: on-failure
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:9000", "||", "exit", "1"]
@@ -28,21 +28,21 @@ services:
       db:
         condition: service_healthy
 
-#   db:
-#     image: postgres:latest
-#     container_name: sonarqube-db
-#     environment:
-#       - TZ=Asia/Jakarta
-#       - POSTGRES_USER=sonar
-#       - POSTGRES_PASSWORD=sonar
-#       - POSTGRES_DB=sonarqube
-#     volumes:
-#       - postgres_data:/var/lib/postgresql/data
-#     healthcheck:
-#       test: ["CMD-SHELL", "pg_isready -U sonar"]
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
+  db:
+    image: postgres:latest
+    container_name: sonarqube-db
+    environment:
+      - TZ=Asia/Jakarta
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonarqube
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sonar"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-# volumes:
-#   postgres_data:
+volumes:
+  postgres_data:

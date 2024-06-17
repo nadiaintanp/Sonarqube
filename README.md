@@ -1,5 +1,5 @@
-# Sonarqube Configuration for production with Docker Compose
-This repo is about how do i setup my sonarqube for production. 
+# Sonarqube
+Configuring sonarqube for production with docker compose
 
 # Requirement
 - **Docker** v26.1.4
@@ -30,9 +30,12 @@ This repo is about how do i setup my sonarqube for production.
     SONAR_JDBC_USERNAME=sonar
     SONAR_JDBC_PASSWORD=sonar
     ```
-6. Change value of `-Dsonar.core.serverBaseURL=http://localhost:9000` on last line of key `SONAR_CE_JAVAADDITIONALOPTS` to your specify hostname. Example: `-Dsonar.core.serverBaseURL=https://my-hostname-choice.com`
+6. Change value of `<CUSTOM DOMAIN>` on last line of key `SONAR_CE_JAVAADDITIONALOPTS` to your specify hostname. Example: `https://my-hostname-choice.com`
 
 7. Run this command
     ```bash
     docker compose up -d --build
     ```
+
+# Troubleshoot
+If you get some error regarding deployment, check [Issues](https://github.com/nadiaintanp/sonarqube/issues) tab
