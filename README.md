@@ -13,7 +13,6 @@ Configuring sonarqube for production with docker compose
     ```bash
     git clone https://github.com/nadiaintanp/sonarqube.git
     cd sonarqube
-    chmod -R 777 data
     ```
 
 2. Rename `.env-example` to `.env`

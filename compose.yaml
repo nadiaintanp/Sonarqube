@@ -8,9 +8,9 @@ services:
       - path: .env
         required: true
     volumes:
-      - ./conf:/opt/sonarqube/conf:rw
-      - ./data:/opt/sonarqube/data:rw
-      - ./extensions:/opt/sonarqube/extensions:rw
+      - ./sonarqube_conf:/opt/sonarqube/conf:rw
+      - ./sonarqube_data:/opt/sonarqube/data:rw
+      - ./sonarqube_extensions:/opt/sonarqube/extensions:rw
     restart: on-failure
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:9000", "||", "exit", "1"]
